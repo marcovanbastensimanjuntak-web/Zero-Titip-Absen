@@ -165,4 +165,355 @@
             color: var(--text-dark);
             border: 1px solid var(--input-border);
             border-radius: 8px;
-            cursor: pointer
+            cursor: pointer;
+            font-weight: bold;
+            transition: var(--transition);
+        }
+
+        .btn-back:hover {
+            background-color: var(--input-border);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--input-border);
+            border-radius: 8px;
+            background-color: var(--input-bg);
+            color: var(--text-dark);
+            font-size: 1rem;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-green);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary-green);
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--hover-green);
+        }
+
+        ul.styled-list {
+            list-style: none;
+        }
+        
+        ul.styled-list li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        ul.styled-list li::before {
+            content: '🌱';
+            position: absolute;
+            left: 0;
+            top: 2px;
+        }
+
+        .camera-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: var(--input-bg);
+            border-radius: 12px;
+            border: 1px dashed var(--primary-green);
+        }
+
+        #kamera, #kanvasFoto {
+            border-radius: 12px;
+            max-width: 100%;
+            width: 400px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .status-box {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</button>
+        <h1>Zero Titip Absen</h1>
+        <p>Inisiatif Integritas Akademik Kampus UNNES</p>
+    </header>
+
+    <main>
+        <div id="mainMenu" class="menu-grid">
+            <div class="menu-card" onclick="showSection('loginSection')">
+                <div class="menu-icon">📝</div>
+                <h3>Daftar & Komitmen</h3>
+            </div>
+            <div class="menu-card" onclick="showSection('alasanSection')">
+                <div class="menu-icon">🔍</div>
+                <h3>Akar Masalah</h3>
+            </div>
+            <div class="menu-card" onclick="showSection('langkahSection')">
+                <div class="menu-icon">🛡️</div>
+                <h3>Langkah Pencegahan</h3>
+            </div>
+            <div class="menu-card" onclick="showSection('ideSection')">
+                <div class="menu-icon">💡</div>
+                <h3>Kirim Ide Kamu</h3>
+            </div>
+            <div class="menu-card" onclick="mulaiPresensi()">
+                <div class="menu-icon">📸</div>
+                <h3>Coba Presensi Aman</h3>
+            </div>
+        </div>
+
+        <div id="loginSection" class="content-section">
+            <h2>Daftar & Beri Komitmen</h2>
+            <form onsubmit="alert('Terima kasih atas komitmenmu!'); goHome(); return false;">
+                <div class="form-group"><label>Nama Lengkap</label><input type="text" placeholder="Masukkan nama" required></div>
+                <div class="form-group"><label>NIM</label><input type="text" placeholder="Masukkan NIM" required></div>
+                <div class="form-group"><label>Jurusan / Program Studi</label><input type="text" placeholder="Masukkan Jurusan" required></div>
+                <div class="form-group"><label>Angkatan</label>
+                    <select required>
+                        <option value="" disabled selected>Pilih Angkatan</option>
+                        <option value="2026">2026</option><option value="2025">2025</option><option value="2024">2024</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-submit">Kirim Komitmen</button>
+            </form>
+            <button class="btn-back" onclick="goHome()">⬅ Kembali</button>
+        </div>
+
+        <div id="alasanSection" class="content-section">
+            <h2>Akar Masalah Budaya Titip Absen</h2>
+            <p>Temuan di lapangan menunjukkan bahwa sistem presensi konvensional satu arah memberikan celah yang signifikan bagi mahasiswa untuk melakukan kecurangan. Tanpa pengawasan yang ketat, dosen kesulitan untuk mengenali wajah setiap individu secara pasti.</p>
+            <p>Ketidakhadiran validasi visual atau biometrik membuat mahasiswa merasa bahwa menitipkan absen adalah tindakan yang aman. Praktik ini bertahap kehilangan stigma negatifnya dan justru mulai dianggap sebagai bentuk "solidaritas", yang pada akhirnya mengikis integritas akademik.</p>
+            <button class="btn-back" onclick="goHome()">⬅ Kembali</button>
+        </div>
+
+        <div id="langkahSection" class="content-section">
+            <h2>Langkah Nyata Mencegah Titip Absen</h2>
+            <ul class="styled-list">
+                <li><strong>Meningkatkan Kesadaran Kolektif:</strong> Membangun pemahaman bahwa kehadiran fisik adalah bentuk tanggung jawab terhadap ilmu.</li>
+                <li><strong>Edukasi Dampak Jangka Panjang:</strong> Menyadarkan mahasiswa bahwa ketidakjujuran kecil dapat membentuk karakter koruptif.</li>
+                <li><strong>Menciptakan Budaya Malu:</strong> Mengubah narasi "solidaritas teman" menjadi "merugikan teman".</li>
+                <li><strong>Mendorong Digitalisasi Presensi:</strong> Mengajukan usulan absensi berbasis validasi visual (Live Selfie) dan pembatasan lokasi spesifik gedung fakultas.</li>
+            </ul>
+            <button class="btn-back" onclick="goHome()">⬅ Kembali</button>
+        </div>
+
+        <div id="ideSection" class="content-section">
+            <h2>Punya Ide Brilian?</h2>
+            <form onsubmit="alert('Ide kamu berhasil dikirim! Terima kasih.'); goHome(); return false;">
+                <div class="form-group"><label>Nama (Boleh Inisial/Anonim)</label><input type="text" placeholder="Nama kamu"></div>
+                <div class="form-group"><label>Deskripsi Ide / Solusi</label><textarea rows="5" placeholder="Tuliskan idemu di sini..." required></textarea></div>
+                <button type="submit" class="btn-submit">Kirim Ide</button>
+            </form>
+            <button class="btn-back" onclick="goHome()">⬅ Kembali</button>
+        </div>
+
+        <div id="presensiSection" class="content-section">
+            <h2>Prototipe Presensi Cerdas</h2>
+            <p>Sistem akan memvalidasi wajah dan melacak lokasi GPS kamu secara *real-time*.</p>
+            
+            <div class="camera-container" id="kameraContainer">
+                <div class="form-group" style="width: 100%; max-width: 400px; margin-bottom: 20px;">
+                    <label for="pilihanFakultas">Mata Kuliah Diadakan Di:</label>
+                    <select id="pilihanFakultas">
+                        <option value="" disabled selected>-- Pilih Fakultas --</option>
+                        <option value="FMIPA">FMIPA (Fakultas Matematika & IPA)</option>
+                        <option value="FT">FT (Fakultas Teknik)</option>
+                        <option value="FEB">FEB (Fakultas Ekonomika & Bisnis)</option>
+                        <option value="FBS">FBS (Fakultas Bahasa & Seni)</option>
+                        <option value="FISIP">FISIP (Fakultas Ilmu Sosial & Ilmu Politik)</option>
+                    </select>
+                </div>
+
+                <video id="kamera" autoplay playsinline></video>
+                <button type="button" class="btn-submit" style="width: auto; padding: 10px 30px; margin-top: 15px;" onclick="ambilFoto()">📸 Rekam Kehadiran</button>
+            </div>
+
+            <div id="hasilFotoContainer" class="camera-container" style="display: none;">
+                <h3 style="margin-bottom: 15px;">Hasil Validasi Kehadiran:</h3>
+                <canvas id="kanvasFoto"></canvas>
+                <div id="statusLokasi" class="status-box"></div>
+                <button type="button" class="btn-submit" style="background-color: var(--input-border); color: var(--text-dark); width: auto; margin-top: 15px;" onclick="resetKamera()">🔄 Coba Ulang</button>
+            </div>
+
+            <button class="btn-back" onclick="stopCamera(); goHome()">⬅ Kembali</button>
+        </div>
+    </main>
+
+    <script>
+        // --- LOGIKA DARK MODE ---
+        const themeToggle = document.getElementById('themeToggle');
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        if (currentTheme === 'dark') {
+            document.body.setAttribute('data-theme', 'dark');
+            themeToggle.innerText = '☀️';
+        }
+
+        function toggleTheme() {
+            if (document.body.getAttribute('data-theme') === 'dark') {
+                document.body.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                themeToggle.innerText = '🌙';
+            } else {
+                document.body.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                themeToggle.innerText = '☀️';
+            }
+        }
+
+        function showSection(sectionId) {
+            document.getElementById('mainMenu').style.display = 'none';
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(sec => sec.style.display = 'none');
+            document.getElementById(sectionId).style.display = 'block';
+        }
+
+        function goHome() {
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(sec => sec.style.display = 'none');
+            document.getElementById('mainMenu').style.display = 'grid';
+        }
+
+        let videoStream;
+
+        function mulaiPresensi() {
+            showSection('presensiSection');
+            const video = document.getElementById('kamera');
+            document.getElementById('kameraContainer').style.display = 'flex';
+            document.getElementById('hasilFotoContainer').style.display = 'none';
+
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } })
+                .then(function(stream) {
+                    videoStream = stream;
+                    video.srcObject = stream;
+                    video.play();
+                })
+                .catch(function(err) {
+                    alert("Akses kamera ditolak. Izinkan browser mengakses kamera.");
+                });
+            }
+        }
+
+        function stopCamera() {
+            if (videoStream) {
+                videoStream.getTracks().forEach(track => track.stop());
+            }
+        }
+
+        function resetKamera() {
+            document.getElementById('hasilFotoContainer').style.display = 'none';
+            document.getElementById('kameraContainer').style.display = 'flex';
+        }
+
+        // Koordinat FMIPA
+        const latFMIPA = -7.04870;
+        const lonFMIPA = 110.38960;
+
+        function hitungJarakKeFMIPA(latUser, lonUser) {
+            const R = 6371e3;
+            const dLat = (latFMIPA - latUser) * Math.PI / 180;
+            const dLon = (lonFMIPA - lonUser) * Math.PI / 180;
+            const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                      Math.cos(latUser * Math.PI / 180) * Math.cos(latFMIPA * Math.PI / 180) *
+                      Math.sin(dLon/2) * Math.sin(dLon/2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            return R * c; 
+        }
+
+        function ambilFoto() {
+            const pilihanFakultas = document.getElementById('pilihanFakultas').value;
+            
+            if (!pilihanFakultas) {
+                alert("Pilih Fakultas dulu!");
+                return;
+            }
+
+            const video = document.getElementById('kamera');
+            const canvas = document.getElementById('kanvasFoto');
+            const context = canvas.getContext('2d');
+            
+            document.getElementById('kameraContainer').style.display = 'none';
+            document.getElementById('hasilFotoContainer').style.display = 'flex';
+
+            canvas.width = video.videoWidth || 300;
+            canvas.height = video.videoHeight || 200;
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            
+            const statusBox = document.getElementById('statusLokasi');
+            statusBox.innerHTML = "Mengecek lokasi (Mode Pameran)...";
+            statusBox.style.backgroundColor = "var(--input-bg)";
+            statusBox.style.color = "var(--text-dark)";
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const jarak = hitungJarakKeFMIPA(position.coords.latitude, position.coords.longitude);
+
+                        // MODE PAMERAN: Sistem hanya mau terima kalau user milih FMIPA dan lagi di FMIPA (Radius 700m)
+                        if (pilihanFakultas === "FMIPA") {
+                            if (jarak <= 700) {
+                                statusBox.style.backgroundColor = "rgba(76, 175, 80, 0.2)";
+                                statusBox.innerHTML = `✅ <strong>Validasi Berhasil!</strong><br>
+                                                       Area: <strong>FMIPA</strong><br>
+                                                       (Jarak valid: ${Math.round(jarak)}m dari pusat)`;
+                            } else {
+                                statusBox.style.backgroundColor = "rgba(244, 67, 54, 0.2)";
+                                statusBox.innerHTML = `❌ <strong>Presensi Gagal!</strong><br>Kamu terdeteksi berada di luar area FMIPA.`;
+                            }
+                        } else {
+                            // Jika user milih fakultas lain selain FMIPA untuk ngetes sistem pas pameran
+                            statusBox.style.backgroundColor = "rgba(244, 67, 54, 0.2)";
+                            statusBox.innerHTML = `❌ <strong>Presensi Ditolak!</strong><br>
+                                                   Sistem mendeteksi kamu sedang berada di area <strong>FMIPA</strong>, bukan di <strong>${pilihanFakultas}</strong>.<br>
+                                                   <span style="font-size: 0.85em; font-weight: normal;">(Fitur Live Demo: Celah titip absen berhasil diblokir!)</span>`;
+                        }
+                    },
+                    (error) => {
+                        statusBox.innerHTML = "❌ Gagal cek lokasi! Pastikan GPS menyala.";
+                    },
+                    { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
+                );
+            } else {
+                statusBox.innerHTML = "Browser tidak mendukung GPS.";
+            }
+        }
+    </script>
+</body>
+</html>
